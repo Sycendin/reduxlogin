@@ -1,18 +1,29 @@
 import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
 import Counter from "./components/Counter";
 import SignIn from "./components/Signin/Sigin";
 import Register from "./components/Register/Register";
 import { Fragment } from "react";
-import Background from "./background/background";
+import { routeRegister, routeSignIn } from "./actions/actions";
+import Background from "./background/Background";
 
 function App() {
+  const route = useSelector((state) => state.routeSelect);
+  // const dispatch = useDispatch();
+  // dispatch(routeSignIn());
+
   // const loggedIn = useSelector((state) => state.isLogged);
   return (
     <Fragment>
-      <div className="App">
-        <Background></Background>
+      <Background></Background>
+      {route === "register" ? (
+        <Register></Register>
+      ) : route === "sigin" ? (
+        <SignIn></SignIn>
+      ) : route === "other" ? (
         <Counter></Counter>
-      </div>
+      ) : null}
+      <div className="App"></div>
     </Fragment>
   );
 }

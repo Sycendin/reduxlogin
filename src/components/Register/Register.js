@@ -1,6 +1,58 @@
 import React, { Fragment } from "react";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+  routeOther,
+  updateEmail,
+  updateName,
+  updatePassword,
+  load,
+} from "../../actions/actions";
+const temp = {
+  id: "1",
+  name: "jack",
+  password: "pass",
+  email: "apple@gmail.com",
+  joined: "march 2",
+};
 const Register = () => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const emailChange = (event) => {
+    dispatch(updateEmail(event.target.value));
+  };
+  const nameChange = (event) => {
+    dispatch(updateName(event.target.value));
+  };
+  const passwordhange = (event) => {
+    // dispatch(updatePassword(event.target.value));
+    dispatch(load(temp));
+  };
+  const onRouteChange = () => {
+    dispatch(routeOther("other"));
+  };
+  const loadUser = (data) => {};
+  const onSubmitSignIn = () => {
+    // fetch('https://obscure-forest-18294.herokuapp.com/register', {
+    fetch("http://localhost:3002/register", {
+      method: "post",
+      headers: { "content-Type": "application/json" },
+      body: JSON.stringify({
+        email: user.email,
+        password: user.password,
+        name: user.name,
+      }),
+    })
+      .then((response) => response.json())
+      .then((user) => {
+        // if we get user back go to home
+        if (user.id) {
+          // build loadUser in app component since entire app will need it
+          loadUser(user);
+          onRouteChange("other");
+        }
+      });
+  };
   return (
     <Fragment>
       {" "}
@@ -14,7 +66,7 @@ const Register = () => {
                   Name
                 </label>
                 <input
-                  // onChange={this.onNameChange}
+                  onChange={nameChange}
                   className="pa2 input-reset  bg-transparent hover-bg-black hover-white w-100"
                   type="text"
                   name="name"
@@ -26,7 +78,7 @@ const Register = () => {
                   Email
                 </label>
                 <input
-                  // onChange={this.onEmailChange}
+                  onChange={emailChange}
                   className="pa2 input-reset  bg-transparent hover-bg-black hover-white w-100"
                   type="email"
                   name="email-address"
@@ -38,7 +90,7 @@ const Register = () => {
                   Password
                 </label>
                 <input
-                  // onChange={this.onPasswordChange}
+                  onChange={passwordhange}
                   className="b pa2 input-reset  bg-transparent hover-bg-black hover-white w-100"
                   type="password"
                   name="password"
@@ -48,7 +100,7 @@ const Register = () => {
             </fieldset>
             <div className="">
               <input
-                // onClick={this.onSubmitSignIn}
+                onClick={onSubmitSignIn}
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                 type="submit"
                 value="Register"

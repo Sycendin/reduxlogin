@@ -18,3 +18,38 @@ export const routeRegister = () => {
     payload: "register",
   };
 };
+
+export const routeOther = () => {
+  return {
+    type: "OTHER",
+    payload: "other",
+  };
+};
+
+export const updateEmail = (email) => {
+  return {
+    type: "EMAIL",
+    payload: email,
+  };
+};
+
+export const updateName = (name) => {
+  return {
+    type: "NAME",
+    payload: name,
+  };
+};
+
+export const updatePassword = (password) => {
+  return {
+    type: "PASSWORD",
+    payload: password,
+  };
+};
+
+export const load = (data) => {
+  return {
+    type: "LOAD",
+    payload: data,
+  };
+};

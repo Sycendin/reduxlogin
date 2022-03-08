@@ -4,6 +4,8 @@ export const routeSelect = (state = "register", action) => {
       return (state = "signin");
     case "REGISTER":
       return (state = "register");
+    case "OTHER":
+      return (state = "other");
     default:
       return state;
   }

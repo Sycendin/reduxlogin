@@ -8,16 +8,12 @@ import {
   updatePassword,
   load,
 } from "../../actions/actions";
-const temp = {
-  id: "1",
-  name: "jack",
-  password: "pass",
-  email: "apple@gmail.com",
-  joined: "march 2",
-};
+
 const Register = () => {
   const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
+
   const emailChange = (event) => {
     dispatch(updateEmail(event.target.value));
   };
@@ -25,13 +21,14 @@ const Register = () => {
     dispatch(updateName(event.target.value));
   };
   const passwordhange = (event) => {
-    // dispatch(updatePassword(event.target.value));
-    dispatch(load(temp));
+    dispatch(updatePassword(event.target.value));
   };
   const onRouteChange = () => {
     dispatch(routeOther("other"));
   };
-  const loadUser = (data) => {};
+  const loadUser = (data) => {
+    dispatch(load(data));
+  };
   const onSubmitSignIn = () => {
     // fetch('https://obscure-forest-18294.herokuapp.com/register', {
     fetch("http://localhost:3002/register", {

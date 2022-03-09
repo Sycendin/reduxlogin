@@ -18,7 +18,7 @@ function App() {
       <Background></Background>
       {route === "register" ? (
         <Register></Register>
-      ) : route === "sigin" ? (
+      ) : route === "signin" ? (
         <SignIn></SignIn>
       ) : route === "other" ? (
         <Counter></Counter>

@@ -20,7 +20,7 @@ const Register = () => {
   const nameChange = (event) => {
     dispatch(updateName(event.target.value));
   };
-  const passwordhange = (event) => {
+  const passwordChange = (event) => {
     dispatch(updatePassword(event.target.value));
   };
   const onRouteChange = () => {
@@ -87,7 +87,7 @@ const Register = () => {
                   Password
                 </label>
                 <input
-                  onChange={passwordhange}
+                  onChange={passwordChange}
                   className="b pa2 input-reset  bg-transparent hover-bg-black hover-white w-100"
                   type="password"
                   name="password"

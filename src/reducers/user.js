@@ -15,6 +15,19 @@ export const user = (state = initalState, action) => {
       return { ...state, password: action.payload };
     case "LOAD":
       return (state = action.payload);
+    case "SIGNOUT":
+      return (state = initalState);
+    default:
+      return state;
+  }
+};
+
+export const signedIn = (state = false, action) => {
+  switch (action.type) {
+    case "USERSIGNOUT":
+      return (state = false);
+    case "USERSIGNIN":
+      return (state = true);
     default:
       return state;
   }

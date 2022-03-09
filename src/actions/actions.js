@@ -25,6 +25,12 @@ export const routeOther = () => {
     payload: "other",
   };
 };
+export const userSignOut = () => {
+  return {
+    type: "USERSIGNOUT",
+    payload: "signout",
+  };
+};
 
 export const updateEmail = (email) => {
   return {
@@ -51,5 +57,19 @@ export const load = (data) => {
   return {
     type: "LOAD",
     payload: data,
+  };
+};
+
+export const userSignedIn = () => {
+  return {
+    type: "USERSIGNIN",
+    payload: "signin",
+  };
+};
+
+export const unLoadUser = () => {
+  return {
+    type: "SIGNOUT",
+    payload: "signout",
   };
 };

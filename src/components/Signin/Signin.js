@@ -5,7 +5,10 @@ import {
   updateEmail,
   updatePassword,
   load,
+  routeRegister,
+  userSignedIn,
 } from "../../actions/actions";
+
 const SignIn = () => {
   const user = useSelector((state) => state.user);
 
@@ -20,7 +23,9 @@ const SignIn = () => {
     dispatch(load(data));
   };
   const onRouteChange = (routeCall) => {
-    dispatch(routeOther(routeCall));
+    routeCall === "register"
+      ? dispatch(routeRegister(routeCall))
+      : dispatch(routeOther(routeCall));
   };
   const onSubmitSignIn = () => {
     // fetch('https://obscure-forest-18294.herokuapp.com/signin', {
@@ -36,7 +41,8 @@ const SignIn = () => {
       .then((user) => {
         if (user.id) {
           loadUser(user);
-          onRouteChange();
+          dispatch(userSignedIn());
+          onRouteChange("other");
         }
       });
   };

@@ -1,4 +1,4 @@
-export const routeSelect = (state = "register", action) => {
+export const routeSelect = (state = "signin", action) => {
   switch (action.type) {
     case "SIGNIN":
       return (state = "signin");

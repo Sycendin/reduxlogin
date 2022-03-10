@@ -7,7 +7,7 @@ import { Fragment } from "react";
 import { routeRegister, routeSignIn } from "./actions/actions";
 import Background from "./background/Background";
 import Navigation from "./components/Navigation/Navigation";
-
+import Modal from "./components/Modal/Modal";
 function App() {
   const route = useSelector((state) => state.routeSelect);
   // const dispatch = useDispatch();
@@ -26,6 +26,7 @@ function App() {
         <Counter></Counter>
       ) : null}
       <div className="App"></div>
+      <Modal></Modal>
     </Fragment>
   );
 }

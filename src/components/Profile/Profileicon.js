@@ -5,6 +5,7 @@ import {
   routeSignIn,
   routeRegister,
   unLoadUser,
+  changeModal,
 } from "../../actions/actions";
 const ProfileIcon = () => {
   const isSignedIn = useSelector((state) => state.signedIn);
@@ -30,8 +31,11 @@ const ProfileIcon = () => {
             className="br-100 pa1 ba b--black-10 h3 w3"
             alt="avatar"
           />
-          <div class="menu list bg-blue mt1 b-yellow f6 child child-vs o-100-vs absolute-m absolute-l top-100-m w-100 br2 shadow-4">
-            <div className="tc ma1 bg-light-blue bg-animate hover-bg-white pointer">
+          <div className="menu list bg-blue mt1 b-yellow f6 child child-vs o-100-vs absolute-m absolute-l top-100-m w-100 br2 shadow-4">
+            <div
+              onClick={() => dispatch(changeModal(true))}
+              className="tc ma1 bg-light-blue bg-animate hover-bg-white pointer"
+            >
               Profile
             </div>
             <div

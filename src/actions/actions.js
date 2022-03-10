@@ -73,3 +73,10 @@ export const unLoadUser = () => {
     payload: "signout",
   };
 };
+
+export const changeModal = (data) => {
+  return {
+    type: "CHANGE_MODAL",
+    payload: data,
+  };
+};

@@ -22,7 +22,7 @@ export const user = (state = initalState, action) => {
   }
 };
 
-export const signedIn = (state = false, action) => {
+export const signedIn = (state = true, action) => {
   switch (action.type) {
     case "USERSIGNOUT":
       return (state = false);

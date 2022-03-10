@@ -7,6 +7,7 @@ import {
   routeRegister,
   unLoadUser,
 } from "../../actions/actions";
+import ProfileIcon from "../Profile/Profileicon";
 
 const Navigation = () => {
   const isSignedIn = useSelector((state) => state.signedIn);
@@ -35,12 +36,7 @@ const Navigation = () => {
             position: "relative",
           }}
         >
-          <button
-            onClick={() => onRouteChange("signout")}
-            className=" br2 f6 link dim br1 ph3 pv2 mb2 dib white bg-dark-green pointer"
-          >
-            Sign Out
-          </button>
+          <ProfileIcon />
         </nav>
         ){" "}
       </Fragment>

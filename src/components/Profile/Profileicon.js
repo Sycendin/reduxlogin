@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   userSignOut,
   routeSignIn,
@@ -8,8 +8,6 @@ import {
   changeModal,
 } from "../../actions/actions";
 const ProfileIcon = () => {
-  const isSignedIn = useSelector((state) => state.signedIn);
-
   const dispatch = useDispatch();
   const onRouteChange = (routeCall) => {
     if (routeCall === "register") {
@@ -22,6 +20,9 @@ const ProfileIcon = () => {
       dispatch(routeSignIn("signin"));
     }
   };
+  const modalopen = () => {
+    dispatch(changeModal(true));
+  };
   return (
     <Fragment>
       <div className="pa4 tc">
@@ -33,7 +34,7 @@ const ProfileIcon = () => {
           />
           <div className="menu list bg-blue mt1 b-yellow f6 child child-vs o-100-vs absolute-m absolute-l top-100-m w-100 br2 shadow-4">
             <div
-              onClick={() => dispatch(changeModal(true))}
+              onClick={() => modalopen()}
               className="tc ma1 bg-light-blue bg-animate hover-bg-white pointer"
             >
               Profile

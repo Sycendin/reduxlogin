@@ -1,10 +1,41 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import ReactDOM from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Modal.css";
-import { changeModal } from "../../actions/actions";
+import { changeModal, load } from "../../actions/actions";
 const Modal = () => {
   const isOpen = useSelector((state) => state.toggleModal);
+  const user = useSelector((state) => state.user);
+  const [temp, settemp] = useState({ name: "", age: "", color: "" });
+  const onFormChange = (event) => {
+    switch (event.target.name) {
+      case "user-name":
+        settemp({ name: event.target.value });
+        break;
+      case "age":
+        settemp({ age: event.target.value });
+        break;
+      case "color":
+        settemp({ color: event.target.value });
+        break;
+      default:
+        break;
+    }
+  };
+
+  const onProfileUpdate = (data) => {
+    fetch(`http://localhost:3002/profile/${user.id}`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ formInput: data }),
+    })
+      .then((response) => {
+        dispatch(changeModal(false));
+        dispatch(load({ ...user, ...data }));
+      })
+      .catch(console.log);
+  };
+
   const dispatch = useDispatch();
   if (!isOpen) return null;
 
@@ -25,15 +56,18 @@ const Modal = () => {
               className="h3 w3 dib"
               alt="avatar"
             />
-            <h1>Name</h1>
-            <p>Member since: March</p>
-            <p>Favorite Color: Blue</p>
-            <p>Age: 50</p>
+            <h1>{user.name}</h1>
+            <p>{`Member since: ${new Date(
+              user.joined
+            ).toLocaleDateString()}`}</p>
+            <p>Favorite Color: {user.color}</p>
+            <p>Age: {user.age}</p>
             <hr></hr>
             <label className="mt2 fw6 mb4" htmlFor="user-name">
-              Name:
+              Update Name:
             </label>
             <input
+              onChange={(e) => onFormChange(e)}
               className="pa2 ba w-100 mb2"
               placeholder="John"
               type="text"
@@ -41,9 +75,10 @@ const Modal = () => {
               id="name"
             ></input>
             <label className="mt2 fw6 mb4" htmlFor="age">
-              Age:
+              Update Age:
             </label>
             <input
+              onChange={(e) => onFormChange(e)}
               className="pa2 ba w-100 mb2"
               placeholder="50"
               type="text"
@@ -51,9 +86,10 @@ const Modal = () => {
               id="age"
             ></input>
             <label className="mt2 fw6 mb4" htmlFor="color">
-              Favorite Color:
+              Update Favorite Color:
             </label>
             <input
+              onChange={(e) => onFormChange(e)}
               className="pa2 ba w-100"
               placeholder="Blue"
               type="text"
@@ -61,7 +97,10 @@ const Modal = () => {
               id="color"
             ></input>
             <div className="mt4 flex justify-center">
-              <button className="b pa2 grow pointer hover-white w-40 bg-light-green mr2">
+              <button
+                onClick={() => onProfileUpdate(temp)}
+                className="b pa2 grow pointer hover-white w-40 bg-light-green mr2"
+              >
                 Save
               </button>
               <button

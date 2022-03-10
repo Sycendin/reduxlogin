@@ -4,6 +4,8 @@ const initalState = {
   password: "",
   email: "",
   joined: "",
+  age: "",
+  color: "",
 };
 export const user = (state = initalState, action) => {
   switch (action.type) {
@@ -12,6 +14,10 @@ export const user = (state = initalState, action) => {
     case "NAME":
       return { ...state, name: action.payload };
     case "PASSWORD":
+      return { ...state, password: action.payload };
+    case "AGE":
+      return { ...state, password: action.payload };
+    case "COLOR":
       return { ...state, password: action.payload };
     case "LOAD":
       return (state = action.payload);
@@ -22,7 +28,7 @@ export const user = (state = initalState, action) => {
   }
 };
 
-export const signedIn = (state = true, action) => {
+export const signedIn = (state = false, action) => {
   switch (action.type) {
     case "USERSIGNOUT":
       return (state = false);

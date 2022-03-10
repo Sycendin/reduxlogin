@@ -53,6 +53,19 @@ export const updatePassword = (password) => {
   };
 };
 
+export const updateAge = (age) => {
+  return {
+    type: "AGE",
+    payload: age,
+  };
+};
+export const updateColor = (color) => {
+  return {
+    type: "Color",
+    payload: color,
+  };
+};
+
 export const load = (data) => {
   return {
     type: "LOAD",

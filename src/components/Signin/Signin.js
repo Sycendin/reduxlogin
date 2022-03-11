@@ -27,6 +27,9 @@ const SignIn = () => {
       ? dispatch(routeRegister(routeCall))
       : dispatch(routeOther(routeCall));
   };
+  const saveAuthTokenInSession = (token) => {
+    window.sessionStorage.setItem("token", token);
+  };
   const onSubmitSignIn = () => {
     // fetch('https://obscure-forest-18294.herokuapp.com/signin', {
     fetch("http://localhost:3002/signin", {
@@ -38,11 +41,26 @@ const SignIn = () => {
       }),
     })
       .then((response) => response.json())
-      .then((user) => {
-        if (user.id) {
-          loadUser(user);
-          dispatch(userSignedIn());
-          onRouteChange("other");
+      .then((data) => {
+        // Return userId from session creation
+        if (data.userId && data.success === "true") {
+          saveAuthTokenInSession(data.token);
+          fetch(`http://localhost:3002/profile/${data.userId}`, {
+            method: "get",
+            headers: {
+              "content-Type": "application/json",
+              "Authorization": data.token,
+            },
+          })
+            .then((response) => response.json())
+            .then((user) => {
+              if (user && user.email) {
+                loadUser(user);
+                dispatch(userSignedIn());
+                onRouteChange("other");
+              }
+            })
+            .catch(console.log);
         }
       });
   };

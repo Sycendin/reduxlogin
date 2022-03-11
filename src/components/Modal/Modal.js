@@ -26,7 +26,10 @@ const Modal = () => {
   const onProfileUpdate = (data) => {
     fetch(`http://localhost:3002/profile/${user.id}`, {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': window.sessionStorage.getItem("token"),
+      },
       body: JSON.stringify({ formInput: data }),
     })
       .then((response) => {

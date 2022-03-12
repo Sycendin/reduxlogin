@@ -3,7 +3,15 @@ import ReactDOM from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Modal.css";
 import { changeModal, load } from "../../actions/actions";
+import { toast } from "react-toastify";
+// Import toastify css file
+import "react-toastify/dist/ReactToastify.css";
+
+// toast-configuration method,
+// it is compulsory method.
+toast.configure();
 const Modal = () => {
+  const updateToast = () => toast("Profile Updated", { autoClose: 2000 });
   const isOpen = useSelector((state) => state.toggleModal);
   const user = useSelector((state) => state.user);
   const [temp, settemp] = useState({ name: "", age: "", color: "" });
@@ -28,13 +36,14 @@ const Modal = () => {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        'Authorization': window.sessionStorage.getItem("token"),
+        Authorization: window.sessionStorage.getItem("token"),
       },
       body: JSON.stringify({ formInput: data }),
     })
       .then((response) => {
         dispatch(changeModal(false));
         dispatch(load({ ...user, ...data }));
+        updateToast();
       })
       .catch(console.log);
   };

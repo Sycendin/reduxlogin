@@ -8,6 +8,7 @@ import { Fragment } from "react";
 import Background from "./background/Background";
 import Navigation from "./components/Navigation/Navigation";
 import Modal from "./components/Modal/Modal";
+import Message from "./components/Message/Message";
 import {
   routeOther,
   load,
@@ -66,7 +67,7 @@ function App() {
       ) : route === "signin" ? (
         <SignIn></SignIn>
       ) : route === "other" ? (
-        <Counter></Counter>
+        <Message></Message>
       ) : null}
       <div className="App"></div>
       <Modal></Modal>

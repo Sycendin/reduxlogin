@@ -93,3 +93,29 @@ export const changeModal = (data) => {
     payload: data,
   };
 };
+
+export const hiddenMessage = () => {
+  return {
+    type: "UNHIDDEN",
+    payload: "hidden",
+  };
+};
+
+export const hiddenMessageGet = () => {
+  return {
+    type: "UNHIDDENGET",
+    payload: "hiddenget",
+  };
+};
+export const getMessageCode = (code) => {
+  return {
+    type: "GET_CODE",
+    payload: code,
+  };
+};
+export const recievedMessage = (code) => {
+  return {
+    type: "GET_MESSAGE",
+    payload: code,
+  };
+};

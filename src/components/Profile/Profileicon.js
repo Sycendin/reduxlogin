@@ -15,6 +15,7 @@ const ProfileIcon = () => {
     } else if (routeCall === "signin") {
       dispatch(routeSignIn(routeCall));
     } else if (routeCall === "signout") {
+      window.sessionStorage.removeItem("token");
       dispatch(userSignOut());
       dispatch(unLoadUser());
       dispatch(routeSignIn("signin"));

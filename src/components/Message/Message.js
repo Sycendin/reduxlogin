@@ -5,6 +5,7 @@ import {
   getMessageCode,
   recievedMessage,
   hiddenMessageGet,
+  messageDNE,
 } from "../../actions/actions";
 import { toast } from "react-toastify";
 // Import toastify css file
@@ -55,8 +56,11 @@ const Message = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // if we get user back go to home
-        dispatch(recievedMessage(data.data));
+        if (data.data === null) {
+          dispatch(messageDNE(data.data));
+        } else {
+          dispatch(recievedMessage(data.data));
+        }
         dispatch(hiddenMessageGet(false));
       });
   };

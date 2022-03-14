@@ -7,11 +7,13 @@ import {
   load,
   routeRegister,
   userSignedIn,
+  errorSignin,
+  errorClear,
 } from "../../actions/actions";
 
 const SignIn = () => {
   const user = useSelector((state) => state.user);
-
+  const error = useSelector((state) => state.errorMessage);
   const dispatch = useDispatch();
   const emailChange = (event) => {
     dispatch(updateEmail(event.target.value));
@@ -32,6 +34,7 @@ const SignIn = () => {
   };
   const onSubmitSignIn = () => {
     // fetch('https://obscure-forest-18294.herokuapp.com/signin', {
+
     fetch("http://localhost:3002/signin", {
       method: "post",
       headers: { "content-Type": "application/json" },
@@ -49,7 +52,7 @@ const SignIn = () => {
             method: "get",
             headers: {
               "content-Type": "application/json",
-              "Authorization": data.token,
+              Authorization: data.token,
             },
           })
             .then((response) => response.json())
@@ -58,11 +61,13 @@ const SignIn = () => {
                 loadUser(user);
                 dispatch(userSignedIn());
                 onRouteChange("other");
+                dispatch(errorClear());
               }
             })
-            .catch(console.log);
+            .catch((err) => console.log(err));
         }
-      });
+      })
+      .catch(dispatch(errorSignin("Wrong Credentials")));
   };
 
   return (
@@ -115,6 +120,7 @@ const SignIn = () => {
               </p>
             </div>
           </div>
+          <p className="red tc b bg-white br2">{error}</p>
         </main>
       </article>
     </Fragment>

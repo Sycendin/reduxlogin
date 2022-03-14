@@ -4,7 +4,7 @@ export const incrementp1 = (num = 0) => {
     payload: num,
   };
 };
-
+// Routes
 export const routeSignIn = () => {
   return {
     type: "SIGNIN",
@@ -25,13 +25,8 @@ export const routeOther = () => {
     payload: "other",
   };
 };
-export const userSignOut = () => {
-  return {
-    type: "USERSIGNOUT",
-    payload: "signout",
-  };
-};
 
+// User
 export const updateEmail = (email) => {
   return {
     type: "EMAIL",
@@ -72,7 +67,13 @@ export const load = (data) => {
     payload: data,
   };
 };
-
+// User sign in status
+export const userSignOut = () => {
+  return {
+    type: "USERSIGNOUT",
+    payload: "signout",
+  };
+};
 export const userSignedIn = () => {
   return {
     type: "USERSIGNIN",
@@ -86,7 +87,7 @@ export const unLoadUser = () => {
     payload: "signout",
   };
 };
-
+// Modal
 export const changeModal = (data) => {
   return {
     type: "CHANGE_MODAL",
@@ -94,6 +95,7 @@ export const changeModal = (data) => {
   };
 };
 
+// Messages that will eventually be displayed
 export const hiddenMessage = () => {
   return {
     type: "UNHIDDEN",
@@ -117,5 +119,25 @@ export const recievedMessage = (code) => {
   return {
     type: "GET_MESSAGE",
     payload: code,
+  };
+};
+export const messageDNE = () => {
+  return {
+    type: "MESSAGE_DNE",
+  };
+};
+// Error messages
+
+export const errorSignin = (message) => {
+  return {
+    type: "SIGNIN_ERROR",
+    payload: message,
+  };
+};
+
+export const errorClear = (message) => {
+  return {
+    type: "ERROR_CLEAR",
+    payload: message,
   };
 };

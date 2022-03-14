@@ -9,7 +9,7 @@ import {
   messageRecieved,
   toggleHiddenGet,
 } from "./message";
-
+import { errorMessage } from "./errorMessages";
 const allReducers = combineReducers({
   counterP1: counterReducerP1,
   routeSelect: routeSelect,
@@ -20,5 +20,6 @@ const allReducers = combineReducers({
   messageCode: messageCode,
   messageRecieved: messageRecieved,
   toggleHiddenGet: toggleHiddenGet,
+  errorMessage: errorMessage,
 });
 export default allReducers;

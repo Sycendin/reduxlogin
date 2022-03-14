@@ -6,6 +6,7 @@ const initalState = {
   joined: "",
   age: "",
   color: "",
+  picture: "http://tachyons.io/img/logo.jpg",
 };
 export const user = (state = initalState, action) => {
   switch (action.type) {
@@ -19,6 +20,8 @@ export const user = (state = initalState, action) => {
       return { ...state, password: action.payload };
     case "COLOR":
       return { ...state, password: action.payload };
+    case "PICTURE":
+      return { ...state, picture: action.payload };
     case "LOAD":
       return (state = action.payload);
     case "SIGNOUT":

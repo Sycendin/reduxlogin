@@ -60,7 +60,12 @@ export const updateColor = (color) => {
     payload: color,
   };
 };
-
+export const updatePicture = (picture) => {
+  return {
+    type: "picture",
+    payload: picture,
+  };
+};
 export const load = (data) => {
   return {
     type: "LOAD",
@@ -107,6 +112,18 @@ export const hiddenMessageGet = () => {
   return {
     type: "UNHIDDENGET",
     payload: "hiddenget",
+  };
+};
+export const hideCode = () => {
+  return {
+    type: "HIDECODE",
+    payload: "hidecode",
+  };
+};
+export const hideMessage = () => {
+  return {
+    type: "HIDEMESSAGE",
+    payload: "hidecode",
   };
 };
 export const getMessageCode = (code) => {

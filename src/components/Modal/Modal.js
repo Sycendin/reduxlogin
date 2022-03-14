@@ -14,7 +14,12 @@ const Modal = () => {
   const updateToast = () => toast("Profile Updated", { autoClose: 2000 });
   const isOpen = useSelector((state) => state.toggleModal);
   const user = useSelector((state) => state.user);
-  const [temp, settemp] = useState({ name: "", age: "", color: "" });
+  const [temp, settemp] = useState({
+    name: "",
+    age: "",
+    color: "",
+    picture: "",
+  });
   const onFormChange = (event) => {
     switch (event.target.name) {
       case "user-name":
@@ -25,6 +30,9 @@ const Modal = () => {
         break;
       case "color":
         settemp({ color: event.target.value });
+        break;
+      case "picture":
+        settemp({ picture: event.target.value });
         break;
       default:
         break;
@@ -63,11 +71,9 @@ const Modal = () => {
             x
           </div>
           <main className="pa4 black-80">
-            <img
-              src="http://tachyons.io/img/logo.jpg"
-              className="h3 w3 dib"
-              alt="avatar"
-            />
+            <div className="flex">
+              <img src={user.picture} className="h3 w3 center" alt="avatar" />
+            </div>
             <h1>{user.name}</h1>
             <p>{`Member since: ${new Date(
               user.joined
@@ -75,7 +81,7 @@ const Modal = () => {
             <p>Favorite Color: {user.color}</p>
             <p>Age: {user.age}</p>
             <hr></hr>
-            <label className="mt2 fw6 mb4" htmlFor="user-name">
+            <label className="dib fw6 mb2" htmlFor="user-name">
               Update Name:
             </label>
             <input
@@ -86,7 +92,7 @@ const Modal = () => {
               name="user-name"
               id="name"
             ></input>
-            <label className="mt2 fw6 mb4" htmlFor="age">
+            <label className="dib fw6 mb2" htmlFor="age">
               Update Age:
             </label>
             <input
@@ -97,16 +103,27 @@ const Modal = () => {
               name="age"
               id="age"
             ></input>
-            <label className="mt2 fw6 mb4" htmlFor="color">
+            <label className="dib fw6 mb2" htmlFor="color">
               Update Favorite Color:
             </label>
             <input
               onChange={(e) => onFormChange(e)}
-              className="pa2 ba w-100"
+              className="pa2 ba w-100 mb2"
               placeholder="Blue"
               type="text"
               name="color"
               id="color"
+            ></input>
+            <label className="dib fw6 mb2" htmlFor="picture">
+              Enter URL For Profile Picture:
+            </label>
+            <input
+              onChange={(e) => onFormChange(e)}
+              className="pa2 ba w-100"
+              placeholder="http://tachyons.io/img/logo.jpg"
+              type="text"
+              name="picture"
+              id="picture"
             ></input>
             <div className="mt4 flex justify-center">
               <button

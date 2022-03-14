@@ -1,13 +1,17 @@
 import React, { Fragment } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   userSignOut,
   routeSignIn,
   routeRegister,
   unLoadUser,
   changeModal,
+  hideCode,
+  hideMessage,
 } from "../../actions/actions";
 const ProfileIcon = () => {
+  const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const onRouteChange = (routeCall) => {
     if (routeCall === "register") {
@@ -19,6 +23,8 @@ const ProfileIcon = () => {
       dispatch(userSignOut());
       dispatch(unLoadUser());
       dispatch(routeSignIn("signin"));
+      dispatch(hideMessage());
+      dispatch(hideCode());
     }
   };
   const modalopen = () => {
@@ -29,7 +35,7 @@ const ProfileIcon = () => {
       <div className="pa4 tc">
         <div className="dib ma2 bg-animate hover-bg-light-blue relative-m hide-child relative-l w-100 w-auto-ns">
           <img
-            src="http://tachyons.io/img/logo.jpg"
+            src={user.picture}
             className="br-100 pa1 ba b--black-10 h3 w3"
             alt="avatar"
           />

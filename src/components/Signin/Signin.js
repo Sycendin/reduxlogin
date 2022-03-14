@@ -45,6 +45,7 @@ const SignIn = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        if (typeof data === "string") dispatch(errorSignin(data));
         // Return userId from session creation
         if (data.userId && data.success === "true") {
           saveAuthTokenInSession(data.token);
@@ -66,8 +67,8 @@ const SignIn = () => {
             })
             .catch((err) => console.log(err));
         }
-      })
-      .catch(dispatch(errorSignin("Wrong Credentials")));
+      });
+    // .catch(dispatch(errorSignin("Wrong Credentials")));
   };
 
   return (

@@ -67,11 +67,11 @@ const Message = () => {
   return (
     <Fragment>
       <div className=" br2 tc center w-50-ns ba shadow-2 pa3 ph5 relative">
-        <label className="db fw6 lh-copy f6" htmlFor="message-send">
+        <label className="tc db fw6 lh-copy f6" htmlFor="message-send">
           Enter Message
         </label>
         <input
-          className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+          className="tc pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
           type="text"
           name="message-send"
           id="message-send"
@@ -91,12 +91,12 @@ const Message = () => {
         ) : null}
       </div>
 
-      <div className=" br2 tc center w-50-ns mt7 ba shadow-2 pa3 ph5 relative">
-        <label className="db fw6 lh-copy f6" htmlFor="message-get">
+      <div className="br2 tc center w-50-ns mt4 ba shadow-2 pa3 ph5 relative">
+        <label className="tc db fw6 lh-copy f6" htmlFor="message-get">
           Enter Message Code
         </label>
         <input
-          className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+          className="tc pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
           type="text"
           name="message-get"
           id="message-get"

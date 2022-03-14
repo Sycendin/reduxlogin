@@ -7,6 +7,8 @@ import {
   updateName,
   updatePassword,
   load,
+  userSignedIn,
+  errorClear,
 } from "../../actions/actions";
 
 const Register = () => {
@@ -38,6 +40,7 @@ const Register = () => {
         email: user.email,
         password: user.password,
         name: user.name,
+        picture: "http://tachyons.io/img/logo.jpg",
       }),
     })
       .then((response) => response.json())
@@ -46,7 +49,9 @@ const Register = () => {
         if (user.id) {
           // build loadUser in app component since entire app will need it
           loadUser(user);
+          dispatch(userSignedIn());
           onRouteChange("other");
+          dispatch(errorClear());
         }
       });
   };

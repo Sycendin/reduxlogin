@@ -11,7 +11,7 @@ This website lets you login, create a secret message, be given a code to that me
 
 ## Tech Stack
 
-**Client:** React using hooks, (JS/HTML/CSS), Redux
+**Client:** React using hooks, (JS/HTML/CSS), Redux, Tachyons CSS package
 
 ## Addtional Packages
 ```
@@ -20,6 +20,7 @@ This website lets you login, create a secret message, be given a code to that me
 "react-toastify": "^8.2.0",
 "react-tsparticles": "^1.41.6",
 "redux": "^4.1.2",
+"tachyons": "^4.12.0",
 ```
 ## Installation
 
